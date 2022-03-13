@@ -15,6 +15,10 @@ public class Nodes {
         nodes = new HashSet<>();
     }
 
+    public void addNode(Node node) {
+        this.nodes.add(node);
+    }
+
     public void addNodes(Collection<Node> nodes) {
         this.nodes.addAll(nodes);
     }
