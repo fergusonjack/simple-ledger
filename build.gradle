@@ -26,7 +26,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.slf4j:slf4j-log4j12'
+//	implementation 'org.slf4j:slf4j-log4j12'
 	implementation 'junit:junit'
 	implementation 'org.mockito:mockito-core'
 	compileOnly 'org.projectlombok:lombok'
