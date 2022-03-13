@@ -18,7 +18,7 @@ public class TestBlock {
         block.addTransaction(tran1);
 
         int nonce = block.calculateNonce();
-        String binaryString = Integer.toBinaryString(Objects.hash(PREVIOUS_HASH, block.getTransactions(), nonce));
+        String binaryString = Integer.toBinaryString(Objects.hash(false, PREVIOUS_HASH, block.getTransactions(), nonce));
         assertThat(binaryString.substring(1, 15), is("00000000000000"));
     }
 
