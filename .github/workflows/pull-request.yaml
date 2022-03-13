@@ -2,8 +2,6 @@ name: pull-request
 
 on: [push]
 
-name: tests
-on: push
 jobs:
   run_tests:
     runs-on: ubuntu-latest
