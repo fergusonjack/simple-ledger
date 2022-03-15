@@ -2,4 +2,6 @@
 
 
 # TODO
-* Support two chains of the same length
+* Support two chains of the same length (done)
+* Support getting other nodes
+* Support docker
