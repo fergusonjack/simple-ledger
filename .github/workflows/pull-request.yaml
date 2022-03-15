@@ -18,3 +18,5 @@ jobs:
         run: ./gradlew checkstyleMain test
       - name: Push Checkstyle report
         uses: jwgmeligmeyling/checkstyle-github-action@v1.2
+        with:
+          path: '**/main.xml'
