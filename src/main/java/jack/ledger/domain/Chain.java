@@ -15,11 +15,10 @@ import static jack.ledger.data.Constant.ZEROS_LENGTH;
 
 public class Chain {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(Chain.class);
+
     // Create what is effectively a HashSet
     private final HashMap<Integer, Block> blocks = new HashMap<>();
-
-    private final AtomicBoolean blocksAccess = new AtomicBoolean();
-    private static final Logger LOGGER = LoggerFactory.getLogger(Chain.class);
     public HashMap<Block, Integer> chainLength = new HashMap<>();
     private HashSet<Block> endChainBlocks = new HashSet<>();
 
@@ -32,7 +31,7 @@ public class Chain {
         if (Chain.checkHash(block.hashCode()).isPresent()) {
             // Check if we have previous block (for now if we don't we won't add in the future we might want to
             // ask other nodes for matching blocks for a hash)
-            synchronized (blocksAccess) {
+            synchronized(this) {
                 if (blocks.containsKey(block.getPreviousHash())) {
                     blocks.put(block.hashCode(), block);
                 } else {
