@@ -19,7 +19,7 @@ public class TestBlock {
 
         int nonce = block.calculateNonce();
         String binaryString = Integer.toBinaryString(Objects.hash(false, PREVIOUS_HASH, block.getTransactions(), nonce));
-        assertThat(binaryString.substring(1, 15), is("00000000000000"));
+        assertThat(binaryString.substring(1, 22), is("000000000000000000000"));
     }
 
 }
