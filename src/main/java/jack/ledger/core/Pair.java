@@ -23,18 +23,18 @@ public class Pair<T, U> {
     }
 
     /**
-     * Get first
+     * Get first.
      *
-     * @return first
+     * @return first.
      */
     public T getFirst() {
         return first;
     }
 
     /**
-     * Get second
+     * Get second.
      *
-     * @return second
+     * @return second.
      */
     public U getSecond() {
         return second;
