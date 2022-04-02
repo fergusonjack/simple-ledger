@@ -12,7 +12,7 @@ import java.util.Optional;
 import static jack.ledger.data.Constant.ZEROS_LENGTH;
 
 /**
- * A "Block"-Chain
+ * A "Block"-Chain.
  */
 public class Chain {
 
@@ -37,7 +37,7 @@ public class Chain {
         if (Chain.checkHash(block.hashCode()).isPresent()) {
             // Check if we have previous block (for now if we don't we won't add in the future we might want to
             // ask other nodes for matching blocks for a hash)
-            synchronized(this) {
+            synchronized (this) {
                 if (blocks.containsKey(block.getPreviousHash())) {
                     blocks.put(block.hashCode(), block);
                 } else {
@@ -100,21 +100,27 @@ public class Chain {
     /**
      * Get all blocks.
      *
-     * @return A map of length to the last block in the chain
+     * @return A map of hash to block.
      */
     public HashMap<Integer, Block> getBlocks() {
         return blocks;
     }
 
     /**
-     * Get the
+     * Get the chain length.
      *
-     * @return
+     * @return Chain length as a map of block to length/position in the chain.
      */
     public HashMap<Block, Integer> getChainLength() {
         return chainLength;
     }
 
+    /**
+     * Check if the hash code is correct, this is done by verifying the number of zeros at the start.
+     *
+     * @param hashCode hashcode for the block.
+     * @return The string representation of the hash.
+     */
     public static Optional<String> checkHash(int hashCode) {
         String hashString = Integer.toBinaryString(hashCode);
         int numZeros = 0;

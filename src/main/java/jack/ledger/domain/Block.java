@@ -88,7 +88,7 @@ public class Block {
     }
 
     /**
-     * Is first block?
+     * Is first block.
      *
      * @return if first block.
      */
@@ -109,7 +109,7 @@ public class Block {
     public int calculateNonce() {
         LOGGER.info("Calculating hash for {} transactions", getNumberOfTransactions());
         HashSet<Integer> usedNumbers = new HashSet<>();
-        for (int i = 0; i < Integer.MAX_VALUE; i++){
+        for (int i = 0; i < Integer.MAX_VALUE; i++) {
             this.nonce = random.nextInt();
             Optional<String> hashString = Chain.checkHash(this.hashCode());
             if (!usedNumbers.contains(this.nonce) && hashString.isPresent()) {
@@ -123,8 +123,12 @@ public class Block {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Block block = (Block) o;
         return firstBlock == block.firstBlock && previousHash == block.previousHash
                 && nonce == block.nonce && Objects.equals(transactions, block.transactions);
