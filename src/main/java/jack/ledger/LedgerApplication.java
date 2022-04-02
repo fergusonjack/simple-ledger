@@ -11,7 +11,7 @@ public class LedgerApplication {
 
     /**
      * Main method/entry point.
-	 *
+     *
      * @param args entry point args.
      */
     public static void main(String[] args) {
