@@ -12,6 +12,10 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 17
+      - name: Run review dog
+      - uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest # Optional. [latest,nightly,v.X.Y.Z]
       - name: Run java checkstyle
         uses: nikitasavinov/checkstyle-action@0.5.0
         with:
