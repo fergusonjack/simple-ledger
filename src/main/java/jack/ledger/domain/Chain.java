@@ -7,12 +7,13 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import static jack.ledger.data.Constant.ZEROS_LENGTH;
 
+/**
+ * A "Block"-Chain
+ */
 public class Chain {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Chain.class);
@@ -26,6 +27,11 @@ public class Chain {
         blocks.put(block.hashCode(), block);
     }
 
+    /**
+     * Add block to the chain.
+     *
+     * @param block add a single block to a given chain.
+     */
     public void addBlock(Block block) {
         // First verify the block
         if (Chain.checkHash(block.hashCode()).isPresent()) {
@@ -43,6 +49,11 @@ public class Chain {
         }
     }
 
+    /**
+     * Find the last block in a chain.
+     *
+     * @return Returns the last block.
+     */
     public Block findLastBlock() {
         fullRefreshChainLength();
         HashMap<Integer, List<Block>> blockLength = this.chainLength.keySet().stream()
@@ -60,6 +71,9 @@ public class Chain {
         return blockLength.get(blockLength.keySet().stream().max(Integer::compare)).stream().findFirst().get();
     }
 
+    /**
+     * Full refresh of the chain length calculation.
+     */
     public void fullRefreshChainLength() {
         this.chainLength = new HashMap<>();
         for (Block block : this.blocks.values()) {
@@ -83,10 +97,20 @@ public class Chain {
         }
     }
 
+    /**
+     * Get all blocks.
+     *
+     * @return A map of length to the last block in the chain
+     */
     public HashMap<Integer, Block> getBlocks() {
         return blocks;
     }
 
+    /**
+     * Get the
+     *
+     * @return
+     */
     public HashMap<Block, Integer> getChainLength() {
         return chainLength;
     }
