@@ -38,7 +38,7 @@ dependencies {
 
 checkstyleMain {
 	source = fileTree('.') {
-		excludes = ['.*/**', 'gradle*', 'build/**', '*.iml', '*.log', '**/*.jar', '**/Test*.java', '**/*Test.java']
+		excludes = ['.*/**', 'gradle*', 'build/**', '*.iml', '*.log', '**/*.jar', '**/Test*.java', '**/Tests*.java', '**/*Test.java', '**/*Tests.java']
 	}
 }
 
