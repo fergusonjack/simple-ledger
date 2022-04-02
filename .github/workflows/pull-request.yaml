@@ -22,8 +22,8 @@ jobs:
         uses: jwgmeligmeyling/checkstyle-github-action@v1.2
         with:
           path: '**/main.xml'
-      - name: Checkstyle for Java
-        uses: dbelyaev/action-checkstyle@v0.5.1
+      - name: Run java checkstyle
+        uses: nikitasavinov/checkstyle-action@0.5.0
         with:
           level: error
           fail_on_error: true
