@@ -1,17 +1,17 @@
 package jack.ledger.domain;
 
 /**
- * Node, this represents a node on the network eg address and port
+ * Node, this represents a node on the network eg address and port.
  */
 public class Node {
 
     /**
-     * Address
+     * Address.
      */
     String address;
 
     /**
-     * Port
+     * Port.
      */
     int port;
 

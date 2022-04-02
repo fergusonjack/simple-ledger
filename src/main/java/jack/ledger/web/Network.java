@@ -8,19 +8,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
 
+/**
+ * Network controller, this is used to communicate with other nodes and allow new nodes on the network to be
+ * communicated around other nods on the network.
+ */
 @RestController
 public class Network {
 
-    private Nodes nodes;
+    private final Nodes nodes;
 
+    /**
+     * Constructor.
+     *
+     * @param nodes The Nodes repository.
+     */
     @Autowired
     public Network(Nodes nodes) {
         this.nodes = nodes;
     }
 
     /**
-     * Get all nodes that this node knows exist
-     * @return Collection of nodes
+     * Get all nodes that this node knows exist.
+     *
+     * @return Collection of nodes.
      */
     @GetMapping("/nodes")
     public Collection<Node> nodes() {
