@@ -25,7 +25,7 @@ public class Network {
      */
     @GetMapping("/nodes")
     public Collection<Node> nodes() {
-        return this.nodes.;
+        return this.nodes.getNodes();
     }
 
 }
