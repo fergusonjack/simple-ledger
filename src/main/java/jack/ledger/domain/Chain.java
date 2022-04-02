@@ -7,19 +7,19 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import static jack.ledger.data.Constant.ZEROS_LENGTH;
 
+/**
+ * A "Block"-Chain.
+ */
 public class Chain {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Chain.class);
 
     // Create what is effectively a HashSet
     private final HashMap<Integer, Block> blocks = new HashMap<>();
-
-    private final AtomicBoolean blocksAccess = new AtomicBoolean();
-    private static final Logger LOGGER = LoggerFactory.getLogger(Chain.class);
     public HashMap<Block, Integer> chainLength = new HashMap<>();
     private HashSet<Block> endChainBlocks = new HashSet<>();
 
@@ -27,12 +27,17 @@ public class Chain {
         blocks.put(block.hashCode(), block);
     }
 
+    /**
+     * Add block to the chain.
+     *
+     * @param block add a single block to a given chain.
+     */
     public void addBlock(Block block) {
         // First verify the block
         if (Chain.checkHash(block.hashCode()).isPresent()) {
             // Check if we have previous block (for now if we don't we won't add in the future we might want to
             // ask other nodes for matching blocks for a hash)
-            synchronized (blocksAccess) {
+            synchronized (this) {
                 if (blocks.containsKey(block.getPreviousHash())) {
                     blocks.put(block.hashCode(), block);
                 } else {
@@ -44,6 +49,11 @@ public class Chain {
         }
     }
 
+    /**
+     * Find the last block in a chain.
+     *
+     * @return Returns the last block.
+     */
     public Block findLastBlock() {
         fullRefreshChainLength();
         HashMap<Integer, List<Block>> blockLength = this.chainLength.keySet().stream()
@@ -61,6 +71,9 @@ public class Chain {
         return blockLength.get(blockLength.keySet().stream().max(Integer::compare)).stream().findFirst().get();
     }
 
+    /**
+     * Full refresh of the chain length calculation.
+     */
     public void fullRefreshChainLength() {
         this.chainLength = new HashMap<>();
         for (Block block : this.blocks.values()) {
@@ -84,14 +97,30 @@ public class Chain {
         }
     }
 
+    /**
+     * Get all blocks.
+     *
+     * @return A map of hash to block.
+     */
     public HashMap<Integer, Block> getBlocks() {
         return blocks;
     }
 
+    /**
+     * Get the chain length.
+     *
+     * @return Chain length as a map of block to length/position in the chain.
+     */
     public HashMap<Block, Integer> getChainLength() {
         return chainLength;
     }
 
+    /**
+     * Check if the hash code is correct, this is done by verifying the number of zeros at the start.
+     *
+     * @param hashCode hashcode for the block.
+     * @return The string representation of the hash.
+     */
     public static Optional<String> checkHash(int hashCode) {
         String hashString = Integer.toBinaryString(hashCode);
         int numZeros = 0;

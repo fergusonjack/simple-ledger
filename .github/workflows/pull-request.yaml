@@ -12,5 +12,18 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 17
+      - name: Run review dog
+        uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest # Optional. [latest,nightly,v.X.Y.Z]
       - name: run tests
-        run: ./gradlew test
+        run: ./gradlew checkstyleMain test
+      - name: Push Checkstyle report
+        uses: jwgmeligmeyling/checkstyle-github-action@v1.2
+        with:
+          path: '**/main.xml'
+      - name: Run java checkstyle
+        uses: nikitasavinov/checkstyle-action@0.5.0
+        with:
+          level: error
+          fail_on_error: true
