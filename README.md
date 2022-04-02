@@ -7,3 +7,4 @@
 * Support two chains of the same length (done)
 * Support getting other nodes
 * Support docker
+* Add Support in the nodes class to do a heartbeat check and remove if no longer live 

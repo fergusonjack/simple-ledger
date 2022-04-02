@@ -12,7 +12,7 @@ public class Pair<T, U> {
     private U second;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param first first.
      * @param second second.
@@ -22,10 +22,20 @@ public class Pair<T, U> {
         this.second = second;
     }
 
+    /**
+     * Get first
+     *
+     * @return first
+     */
     public T getFirst() {
         return first;
     }
 
+    /**
+     * Get second
+     *
+     * @return second
+     */
     public U getSecond() {
         return second;
     }
