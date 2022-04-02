@@ -16,14 +16,14 @@ jobs:
         uses: reviewdog/action-setup@v1
         with:
           reviewdog_version: latest # Optional. [latest,nightly,v.X.Y.Z]
-      - name: Checkstyle for Java
-        uses: dbelyaev/action-checkstyle@v0.5.1
-        with:
-          level: error
-          fail_on_error: true
       - name: run tests
         run: ./gradlew checkstyleMain test
       - name: Push Checkstyle report
         uses: jwgmeligmeyling/checkstyle-github-action@v1.2
         with:
           path: '**/main.xml'
+      - name: Checkstyle for Java
+        uses: dbelyaev/action-checkstyle@v0.5.1
+        with:
+          level: error
+          fail_on_error: true
