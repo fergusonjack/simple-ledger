@@ -21,6 +21,7 @@ jobs:
         with:
           level: error
           fail_on_error: true
+          reporter: github-pr-review
       - name: run tests
         run: ./gradlew checkstyleMain test
       - name: Push Checkstyle report
