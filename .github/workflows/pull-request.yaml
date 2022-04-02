@@ -20,7 +20,7 @@ jobs:
         uses: nikitasavinov/checkstyle-action@0.5.0
         with:
           level: error
-          fail_on_error: true
+          fail_on_error: false
           reporter: github-pr-review
       - name: run tests
         run: ./gradlew checkstyleMain test
